@@ -55,14 +55,6 @@ String.prototype.contains = function(content){
 
 bot.dialog('/', function (session) {
     const message = stripMessage(session);
-    const taraList = ['canteen','kanteen','eat','uwi','tara'];
-    let taraBool = false;
-
-    taraList.forEach((word) => {
-        if(message.toLowerCase().contains(word)){
-            taraBool = true;
-        }
-    });
 
     const command = message.split(" ")[0].toLowerCase();
     switch(command){
@@ -98,11 +90,7 @@ bot.dialog('/', function (session) {
             session.send("Available Commands: " + commands.join(', '));
             break;
         default:
-            if(taraBool){
-                session.send('Taraaaaaaaaa!!!');
-            }else{
-                randomReply(session);
-            }
+            randomReply(session);
     }
 });
 
@@ -594,5 +582,6 @@ const sendMarkdown = (session) => {
 };
 
 const stripMessage = (session) => {
+    console.log(session);
     return session.message.text.replace('@Condoriano ','');
 };
